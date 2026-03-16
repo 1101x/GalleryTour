@@ -41,7 +41,7 @@
     }
     /* Mobile joystick */
     #joystick-area {
-      display: none; position: absolute; bottom: 60px; left: 30px;
+      display: none; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);
       width: 110px; height: 110px; z-index: 10;
     }
     #joystick-base {
@@ -403,10 +403,11 @@ function animate() {
     // W/S 또는 위아래 방향키 → 앞뒤 이동만
     const fw = (keys['KeyW'] || keys['ArrowUp']) ? 1 : (keys['KeyS'] || keys['ArrowDown']) ? -1 : 0;
     const fwTotal = fw || -joyDZ;
+    const stTotal = joyDX;
 
     const sinY = Math.sin(yaw), cosY = Math.cos(yaw);
-    camPos.x += (sinY * fwTotal) * speed * dt;
-    camPos.z += (cosY * fwTotal) * speed * dt;
+    camPos.x += (sinY * fwTotal + cosY * stTotal) * speed * dt;
+    camPos.z += (cosY * fwTotal - sinY * stTotal) * speed * dt;
     camPos.x = Math.max(-11, Math.min(11, camPos.x));
     camPos.z = Math.max(-85, Math.min(30, camPos.z));
     camPos.y = 1.7;
