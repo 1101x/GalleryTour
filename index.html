@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>율곡로 1길 · 종로구 — 3D 걷기</title>
+  <title> 갤러리 투어 일기 </title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #000; overflow: hidden; font-family: sans-serif; }
@@ -41,7 +41,7 @@
     }
     /* Mobile joystick */
     #joystick-area {
-      display: none; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);
+      display: none; position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);
       width: 110px; height: 110px; z-index: 10;
     }
     #joystick-base {
@@ -260,7 +260,7 @@ const JOY_R = 33;
 canvas.addEventListener('touchstart', e => {
   if (!started) { startGame(); return; }
   for (const t of e.changedTouches) {
-    if (t.clientX > window.innerWidth / 2 && lookTouchId === null) {
+if (lookTouchId === null) {
       lookTouchId = t.identifier; lastLTX = t.clientX; lastLTY = t.clientY;
     }
   }
@@ -403,7 +403,7 @@ function animate() {
     // W/S 또는 위아래 방향키 → 앞뒤 이동만
     const fw = (keys['KeyW'] || keys['ArrowUp']) ? 1 : (keys['KeyS'] || keys['ArrowDown']) ? -1 : 0;
     const fwTotal = fw || -joyDZ;
-    const stTotal = joyDX;
+    const stTotal = -joyDX;
 
     const sinY = Math.sin(yaw), cosY = Math.cos(yaw);
     camPos.x += (sinY * fwTotal + cosY * stTotal) * speed * dt;
